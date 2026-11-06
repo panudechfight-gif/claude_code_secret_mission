@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiiFIGHTDev | AI Coding Solutions</title>
+  <meta name="description" content="AiiFIGHTDev บริษัทพัฒนาซอฟต์แวร์ด้วย AI Coding เขียนโค้ดเร็วขึ้น คุณภาพสูงขึ้น ส่งมอบไวขึ้น" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="container nav">
+      <a href="#home" class="logo">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span>Aii<b>FIGHT</b>Dev</span>
+      </a>
+      <nav class="menu" id="menu">
+        <a href="#services">บริการ</a>
+        <a href="#process">ขั้นตอนการทำงาน</a>
+        <a href="#why">ทำไมต้องเรา</a>
+        <a href="#contact">ติดต่อเรา</a>
+        <a href="#contact" class="btn btn-primary btn-sm">ปรึกษาฟรี</a>
+      </nav>
+      <button class="burger" id="burger" aria-label="เปิดเมนู"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="container hero-grid">
+      <div class="hero-text reveal">
+        <span class="badge">✨ AI-Powered Software Development</span>
+        <h1>สร้างซอฟต์แวร์ด้วย <span class="grad">AI Coding</span><br />เร็วกว่า ฉลาดกว่า</h1>
+        <p>AiiFIGHTDev ผสานพลัง AI เข้ากับทีมวิศวกรมืออาชีพ ช่วยให้ธุรกิจของคุณเปลี่ยนไอเดียเป็นผลิตภัณฑ์จริงได้ในเวลาที่สั้นลง คุณภาพสูงขึ้น</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">เริ่มโปรเจกต์กับเรา</a>
+          <a href="#services" class="btn btn-ghost">ดูบริการของเรา →</a>
+        </div>
+        <div class="stats">
+          <div><strong data-count="120" data-suffix="+">0</strong><span>โปรเจกต์สำเร็จ</span></div>
+          <div><strong data-count="3" data-suffix="x">0</strong><span>พัฒนาเร็วขึ้น</span></div>
+          <div><strong data-count="98" data-suffix="%">0</strong><span>ลูกค้าพึงพอใจ</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="code-window">
+          <div class="code-bar">
+            <i></i><i></i><i></i>
+            <span>aiifight.js</span>
+          </div>
+          <pre><code id="typed"></code><span class="cursor">|</span></pre>
+        </div>
+        <div class="float-card fc-1">🚀 Deploy สำเร็จ</div>
+        <div class="float-card fc-2">🤖 AI Review ผ่าน</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">บริการของเรา</span>
+        <h2>ครบทุกงาน <span class="grad">AI Coding</span></h2>
+        <p>ตั้งแต่ที่ปรึกษา ไปจนถึงพัฒนาและดูแลระบบ ด้วยเครื่องมือ AI ล่าสุด</p>
+      </div>
+      <div class="grid-3">
+        <article class="card reveal">
+          <div class="icon">⚡</div>
+          <h3>AI-Assisted Development</h3>
+          <p>พัฒนาเว็บและแอปพลิเคชันด้วย AI ช่วยเขียน ตรวจ และทดสอบโค้ด ส่งมอบไวกว่าเดิมหลายเท่า</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🤖</div>
+          <h3>Custom AI Agents</h3>
+          <p>ออกแบบและสร้าง AI Agent เฉพาะองค์กร ทำงานอัตโนมัติ ลดงานซ้ำซ้อนของทีม</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🔍</div>
+          <h3>AI Code Review</h3>
+          <p>ตรวจโค้ด หาบั๊ก ช่องโหว่ และปรับปรุงประสิทธิภาพอย่างต่อเนื่องด้วยระบบ AI</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🔄</div>
+          <h3>Legacy Modernization</h3>
+          <p>ปรับปรุงระบบเก่าให้ทันสมัย แปลงโค้ดและเอกสารด้วย AI อย่างปลอดภัยและเป็นระบบ</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🎓</div>
+          <h3>AI Coding Training</h3>
+          <p>อบรมทีมพัฒนาให้ใช้ Claude Code และเครื่องมือ AI อย่างมีประสิทธิภาพ พร้อมแนวทางปฏิบัติจริง</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🛡️</div>
+          <h3>Maintenance &amp; Support</h3>
+          <p>ดูแลระบบหลังส่งมอบ แก้ไขปัญหา และพัฒนาฟีเจอร์ต่อเนื่อง โดยทีมที่เข้าใจระบบของคุณ</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section alt" id="process">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">ขั้นตอนการทำงาน</span>
+        <h2>จากไอเดียสู่การใช้งานจริงใน <span class="grad">4 ขั้นตอน</span></h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><b>01</b><h3>วิเคราะห์</h3><p>ทำความเข้าใจเป้าหมายและความต้องการของธุรกิจ</p></div>
+        <div class="step reveal"><b>02</b><h3>ออกแบบ</h3><p>วางสถาปัตยกรรมและ Prototype อย่างรวดเร็ว</p></div>
+        <div class="step reveal"><b>03</b><h3>พัฒนาด้วย AI</h3><p>ทีมวิศวกรร่วมกับ AI สร้างและทดสอบอย่างเข้มงวด</p></div>
+        <div class="step reveal"><b>04</b><h3>ส่งมอบ &amp; ดูแล</h3><p>Deploy ขึ้นระบบจริงและดูแลต่อเนื่อง</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="section" id="why">
+    <div class="container why-grid">
+      <div class="reveal">
+        <span class="eyebrow">ทำไมต้อง AiiFIGHTDev</span>
+        <h2>ทีมมนุษย์ที่เก่ง <span class="grad">+ AI</span> ที่ใช่</h2>
+        <p class="lead">เราไม่ได้แทนที่วิศวกรด้วย AI แต่เราให้วิศวกรที่เก่งทำงานร่วมกับ AI เพื่อผลลัพธ์ที่ดีที่สุด</p>
+        <ul class="checks">
+          <li>ส่งมอบเร็วขึ้นสูงสุด 3 เท่า</li>
+          <li>โค้ดสะอาด ผ่านการ Review ทุกขั้นตอน</li>
+          <li>โปร่งใส อัปเดตความคืบหน้าสม่ำเสมอ</li>
+          <li>ข้อมูลของลูกค้าปลอดภัยและเป็นความลับ</li>
+        </ul>
+      </div>
+      <div class="why-panel reveal">
+        <div class="bar-item"><span>ความเร็วในการพัฒนา</span><div class="bar"><i style="--w:92%"></i></div></div>
+        <div class="bar-item"><span>คุณภาพโค้ด</span><div class="bar"><i style="--w:96%"></i></div></div>
+        <div class="bar-item"><span>ความปลอดภัย</span><div class="bar"><i style="--w:94%"></i></div></div>
+        <div class="bar-item"><span>ความพึงพอใจลูกค้า</span><div class="bar"><i style="--w:98%"></i></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + Contact -->
+  <section class="section cta" id="contact">
+    <div class="container contact-grid">
+      <div class="reveal">
+        <h2>พร้อมสร้างสิ่งใหม่ด้วย AI แล้วหรือยัง?</h2>
+        <p>เล่าไอเดียของคุณให้เราฟัง ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง พร้อมคำปรึกษาเบื้องต้นฟรี</p>
+      </div>
+      <form class="form reveal" id="contactForm" novalidate>
+        <label>ชื่อ
+          <input type="text" name="name" placeholder="ชื่อของคุณ" required />
+        </label>
+        <label>อีเมล
+          <input type="email" name="email" placeholder="you@company.com" required />
+        </label>
+        <label>รายละเอียดโปรเจกต์
+          <textarea name="message" rows="4" placeholder="เล่าให้เราฟังสั้น ๆ" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-white">ส่งข้อความ</button>
+        <p class="form-msg" id="formMsg" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container foot">
+      <a href="#home" class="logo"><span class="logo-mark">&lt;/&gt;</span><span>Aii<b>FIGHT</b>Dev</span></a>
+      <p>© <span id="year"></span> AiiFIGHTDev. สงวนลิขสิทธิ์</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
