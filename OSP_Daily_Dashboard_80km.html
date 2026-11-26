@@ -1,0 +1,139 @@
+<!DOCTYPE html><html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daily OSP Improvement — SFP 80 km</title>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+/* ===== DAILY OSP IMPROVEMENT THEME ===== */
+:root{--osp-dark:#0B2E2B;--osp:#0F5C55;--osp2:#14857A;--osp-l:#5FD3C4;--osp-xl:#E3F6F3;--sun:#FFC20E;--sun-d:#E0A800;
+--bg:#EEF4F3;--card:#fff;--txt:#10302C;--mut:#5F7A76;--line:#D7E5E2;--red:#E04848;--amb:#F29A1F;--grn:#1FA463;--blue:#2F7FD1}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Prompt","Segoe UI",Tahoma,sans-serif;background:var(--bg);color:var(--txt);font-size:14px}
+header{background:linear-gradient(120deg,var(--osp-dark) 0%,var(--osp) 60%,var(--osp2) 100%);color:#fff;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:repeating-linear-gradient(135deg,var(--sun) 0 18px,var(--osp-dark) 18px 36px)}
+.hd{max-width:1500px;margin:auto;padding:18px 28px 24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{width:52px;height:52px;border-radius:12px;background:var(--sun);color:var(--osp-dark);display:grid;place-items:center;font-size:26px;font-weight:700;box-shadow:0 4px 14px rgba(0,0,0,.25)}
+.eyebrow{letter-spacing:3px;font-size:12px;font-weight:600;color:var(--sun)}
+header h1{margin:2px 0 0;font-size:21px;font-weight:600}
+header p{margin:4px 0 0;color:#BFE3DD;font-size:12px}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 12px;border-radius:20px;font-size:12px}
+.tag.y{background:var(--sun);color:var(--osp-dark);border-color:var(--sun);font-weight:700}
+main{padding:20px 28px;max-width:1500px;margin:auto}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.kpi{background:var(--card);border-radius:12px;padding:14px 16px;box-shadow:0 2px 8px rgba(11,46,43,.07);position:relative;overflow:hidden}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--osp2)}
+.kpi .l{color:var(--mut);font-size:12px}.kpi .v{font-size:30px;font-weight:700;margin:4px 0;color:var(--osp)}.kpi .s{font-size:12px;color:var(--mut)}
+.kpi.red:before{background:var(--red)}.kpi.red .v{color:var(--red)}
+.kpi.sun:before{background:var(--sun)}.kpi.sun .v{color:#B07F00}
+.sec{background:var(--card);border-radius:12px;padding:16px 18px;margin-top:16px;box-shadow:0 2px 8px rgba(11,46,43,.07)}
+.sec h2{margin:0 0 12px;font-size:15px;font-weight:600;color:var(--osp-dark);display:flex;align-items:center;gap:8px}
+.sec h2:before{content:"";width:10px;height:18px;border-radius:3px;background:var(--sun)}
+.grid2{display:grid;grid-template-columns:2fr 1fr;gap:16px}.grid2>.sec{margin-top:16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+select,input,button{font:inherit;font-size:13px;padding:6px 12px;border:1px solid var(--line);border-radius:20px;background:#fff;color:var(--txt)}
+button{cursor:pointer}button:hover{border-color:var(--osp2)}
+button.on{background:var(--osp);color:#fff;border-color:var(--osp)}
+button.y{background:var(--sun);border-color:var(--sun);color:var(--osp-dark);font-weight:600}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--osp);color:#fff;padding:9px 8px;text-align:left;position:sticky;top:0;cursor:pointer;white-space:nowrap;font-weight:500}
+thead th:first-child{border-top-left-radius:8px}thead th:last-child{border-top-right-radius:8px}
+td{padding:7px 8px;border-bottom:1px solid var(--line)}tbody tr:nth-child(even) td{background:#F8FBFA}
+tr:hover td{background:var(--osp-xl)!important}tr.sel td{background:#FFF6D6!important}
+td.n,th.n{text-align:right}
+.pill{padding:2px 9px;border-radius:10px;font-size:11.5px;font-weight:600;color:#fff;white-space:nowrap}
+.p-r{background:var(--red)}.p-a{background:var(--amb)}.p-g{background:var(--grn)}.p-b{background:#8A9C99}
+.rc{font-size:11px;background:var(--osp-xl);color:var(--osp);padding:1px 6px;border-radius:4px;margin-left:4px;font-weight:600}
+.zd{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:12px}
+.zd div{background:var(--osp-xl);border-radius:10px;padding:10px 12px;border-bottom:3px solid var(--osp-l)}
+.zd b{display:block;font-size:22px;color:var(--osp)}
+.scroll{max-height:420px;overflow:auto}.mut{color:var(--mut);font-size:12px}
+.err{background:#FDECEC;color:var(--red);padding:10px;border-radius:8px;display:none;margin-bottom:10px}
+.ok{color:var(--grn);font-weight:600}.warn{color:var(--amb);font-weight:600}.fixed{color:var(--blue);font-weight:600}
+tfoot td{font-weight:700;background:#FFF6D6!important;border-top:2px solid var(--sun)}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:18px;border-top:4px solid var(--sun);background:#fff;margin-top:20px}
+@media(max-width:1100px){.kpis{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:1fr}.zd{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.hd,main{padding-left:16px;padding-right:16px}.kpis{grid-template-columns:repeat(2,1fr)}.kpi .v{font-size:24px}}
+</style></head><body>
+<header><div class="hd">
+<div class="brand"><div class="logo">⚡</div><div><div class="eyebrow">DAILY OSP IMPROVEMENT</div>
+<h1>Link Transmission SFP ระยะ 80 km — แยก Zone</h1>
+<p>แหล่งข้อมูล: Telecom_80km_Optical_Module_Dashboard_Sparepart.xlsx (Clean_Data_80km / NE_Summary_80km / Sparepart_Plan / Data_Quality)</p></div></div>
+<div class="badges"><span class="tag">RNO Optimize</span><span class="tag">Transmission</span><span class="tag y">📅 ข้อมูล ณ 26 พ.ย. 2026</span></div>
+</div></header>
+<main>
+<div class="err" id="err"></div>
+<div class="kpis" id="kpis"></div>
+
+<div class="sec"><h2>1) ภาพรวม Zone — จำนวน Module 80 km แยกความเร็ว และ Alert</h2>
+<div class="bar"><span class="mut">มุมมอง:</span><button class="on" data-f="all">ทุก Zone</button><button data-f="core">Core 5 Zone (RC2/RC3)</button><button data-f="alert">เฉพาะ Zone ที่มี Alert</button><span class="mut">• คลิกแท่งกราฟหรือแถวตารางเพื่อดูรายละเอียด Zone</span></div>
+<div class="grid2" style="margin:0"><div><canvas id="cZone" height="135"></canvas></div><div style="max-width:340px;margin:auto;width:100%"><canvas id="cSpeed" height="300"></canvas></div></div></div>
+
+<div class="sec"><h2>2) ตารางสรุปจำนวน NE / Module 80 km แยกตาม Zone</h2>
+<div class="scroll"><table id="tZone"><thead><tr><th data-k="z">Zone</th><th class="n" data-k="ne">จำนวน NE</th><th class="n" data-k="m">Module 80 km</th><th class="n" data-k="sh">สัดส่วน</th><th class="n" data-k="g1">1G</th><th class="n" data-k="g10">10G</th><th class="n" data-k="g100">100G</th><th class="n" data-k="al">Alert (ตัว)</th><th class="n" data-k="ar">อัตรา Alert</th><th>Vendor PN หลัก</th><th>สถานะ</th></tr></thead><tbody></tbody><tfoot></tfoot></table></div></div>
+
+<div class="sec"><h2 id="zTitle">3) รายละเอียด Zone: ทุก Zone</h2><div class="zd" id="zd"></div>
+<div class="bar"><input id="q" placeholder="ค้นหา NE / Vendor PN / Port..." style="min-width:240px"><select id="sp"><option value="">ทุกความเร็ว</option><option value="1000">1G</option><option value="10000">10G</option><option value="100000">100G</option></select><button id="rst">ล้างตัวกรอง Zone</button><button id="csv" class="y">⬇ Export CSV</button></div>
+<div class="scroll"><table id="tAl"><thead><tr><th>Zone</th><th>NE Name</th><th>Port</th><th>Vendor PN</th><th class="n">Speed</th><th>Rx Status</th><th>Tx Status</th><th class="n">Rx (dBm)</th><th>Flag</th></tr></thead><tbody></tbody></table></div>
+<p class="mut">รายการ Module ที่ Alert/Unknown ทั้งหมดจาก Clean_Data_80km (Alert Flag ≠ Normal) — ใช้เป็น Action List ทดแทน Module</p></div>
+
+<div class="grid2">
+<div class="sec"><h2>4) แผน Spare Part แยกความเร็ว (Sparepart_Plan)</h2><table><thead><tr><th>ความเร็ว</th><th class="n">ติดตั้ง</th><th class="n">Alert</th><th class="n">แนะนำจัดซื้อ</th></tr></thead><tbody id="tSp"></tbody></table>
+<p class="mut">สูตร: ROUNDUP(ติดตั้ง × Buffer%) + Alert • Buffer 100G = 10%, 10G/1G = 5% (ชีต Parameters)</p></div>
+<div class="sec"><h2>5) Data Quality Check</h2><div class="scroll"><table><thead><tr><th>รายการตรวจสอบ</th><th class="n">พบ</th><th>สถานะ</th><th>แนวทาง</th></tr></thead><tbody id="tDq"></tbody></table></div></div>
+</div>
+</main>
+<footer><b style="color:var(--osp)">DAILY OSP IMPROVEMENT</b> • RNO Optimize • Transmission 80 km Optical Module • ยอดรวมตรวจสอบแล้ว: 374 NE / 870 Module / 45 Alert</footer>
+<script>
+const D={"zones":[["NMA",67,184,2,182,0,3],["UBN",31,89,6,83,0,7],["UDN",35,87,4,83,0,4],["KKN",26,55,2,52,1,2],["CPM",27,53,1,51,1,7],["SNK",23,47,0,45,2,2],["KSN",19,41,0,41,0,0],["NPM",20,38,2,36,0,3],["LEI",16,34,0,28,6,1],["BRM",11,33,1,32,0,2],["BKN",17,29,1,28,0,3],["SSK",11,25,2,23,0,0],["ACR",9,23,1,22,0,1],["ไม่ระบุ Zone",1,23,0,23,0,0],["SRN",12,21,0,21,0,2],["RET",11,20,2,14,4,5],["NKI",12,20,1,19,0,2],["MKM",10,17,0,17,0,0],["MDH",6,16,1,15,0,0],["NBL",6,9,1,8,0,1],["YST",4,6,0,6,0,0]],
+"top":{"NMA":["SFP+10G-BXU-80",41],"UDN":["SFP+10G-BXU-80",23],"KKN":["SFP+10G-BXU-80",10],"UBN":["SFP+10G-BXU-80",23],"LEI":["SFP+-ZR",11],"RET":["SFP+10G-BXU-80",4],"CPM":["SFP+10G-BXU-80",12],"KSN":["SFP+10G-BXU-80",14],"SSK":["SFP+10G-BXD-80",9],"SNK":["SFP+10G-BXU-80",13],"NKI":["SFP+10G-BXU-80",6],"NBL":["SFP+-ZR",2],"ACR":["SFP+ Transceiver",5],"NPM":["SFP+10G-BXD-80",9],"BKN":["SFP+ Transceiver",10],"YST":["SFP+-ZR",2],"BRM":["SFP+10G-BXD-80",7],"SRN":["SFP+-ZR",8],"MDH":["SFP+-ZR",6],"MKM":["SFP+10G-BXU-80",6],"ไม่ระบุ Zone":["SFP-10G-BX55-80",6]},
+"alerts":[["UBN","ME-1822-01_V303(UBN)แมคโคร","GigabitEthernet0/3/14","BIDI-GE-80KM",1000,"Critical Alert","Normal","-40.0","Alert"],["UBN","ME-1801-37_V303(UBN)โลตัส","GigabitEthernet0/3/19","RTXM191-502",1000,"Critical Alert","Normal","-40.0","Alert"],["UDN","ME-3032-36_V505(UDN)คอนโดเทล","GigabitEthernet0/3/22","ICTBS-1415-80D",1000,"Critical Alert","Normal","-40.0","Alert"],["RET","ME-2801-102_V374(RET)Big C ร้อยเอ็ด","GigabitEthernet0/3/5","ICT-SFP+-ZR",10000,"Critical Alert","Normal","-40.0","Alert"],["LEI","ME-3408-61_V544(LEI)นาด้วง","GigabitEthernet0/2/2","SFP+-ZR",10000,"Critical Alert","Normal","-40.0","Alert"],["CPM","ME-1604-91_V271(CPM)จัตุรัส","25GE0/2/18","TSBLXG80D-45",10000,"Critical Alert","Normal","-23.18","Alert"],["UBN","ME-1815-31_V306(UBN)ตาลสุม","GigabitEthernet0/3/23","SFP-GE-LX80-U",1000,"Critical Alert","Critical Alert","-40.0","Alert"],["UBN","ME-1819-31_V306(UBN)ดอนมดแดง","GigabitEthernet0/3/21","SFP-BX-U",1000,"Critical Alert","Critical Alert","-40.0","Alert"],["UDN","ME-3002-40_V508(UDN)กุมภวาปี","GigabitEthernet0/3/10","FBP4524-L8DC-H",1000,"Critical Alert","Critical Alert","-40.0","Alert"],["NBL","ME-3102-64_V548(NBL)สุวรรณคูหา","GigabitEthernet0/3/20","SFP-GE-70D",1000,"Critical Alert","Normal","-40.0","Alert"],["NPM","ME-3610-31_V396(NPM)โพนสวรรค์","GigabitEthernet0/3/0","ICTOP-BSFP+-T4R5",10000,"Normal","Critical Alert","-21.42","Alert"],["NPM","ME-3602-31_V537(NPM2)ธาตุพนม2","GigabitEthernet0/3/13","PT7620-51-3W",1000,"Critical Alert","Normal","-40.0","Alert"],["SNK","ME-3515-31_V390(SNK)โคกศรีสุพรรณ","25GE0/2/21","GFLC-BX-1415D-80",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["BKN","ME-3214-62_V528(BKN)เฝ้าไร่","GigabitEthernet0/3/19","SFP-GE-70D",1000,"Critical Alert","Critical Alert","-40.0","Alert"],["NPM","ME-3611-31_V398(NPM)นาทม","25GE0/2/21","SFP+10G-BXD-80",10000,"Warning Alert","Normal","-6.94","Alert"],["SNK","ME-3508-33_V395(SNK)กุดเรือคำ","25GE0/2/11","SFP+-ZR",10000,"Critical Alert","Normal","-40.0","Alert"],["CPM","ME-1602-92_V273(CPM)หนองคัน","25GE0/2/22","GFLC-BX-1514D-80",10000,"Critical Alert","Normal","-26.38","Alert"],["UBN","ME-1802-72_V1572(UBN3)นาส่วง","GigabitEthernet0/3/0","SFP+10G-BXU-80",10000,"Critical Alert","Normal","-23.87","Alert"],["UBN","ME-1812-71_V1573(UBN3)แยกนาโพธิ์กลาง","GigabitEthernet0/3/14","SFP-GE-LX80-D",1000,"Critical Alert","Critical Alert","-40.0","Alert"],["NMA","ME-1408-31_V1506(NMA3)ตลาดแค","GigabitEthernet0/3/22","RTXM191-502",1000,"Critical Alert","Normal","-40.0","Alert"],["CPM","ME-1611-91_V273(CPM)เกษตรสมบูรณ์","25GE0/2/18","SFP-10G-BX49-80",10000,"Critical Alert","Normal","-25.37","Alert"],["CPM","ME-1611-91_V273(CPM)เกษตรสมบูรณ์","25GE0/2/21","SFP+10G-BXU-80",10000,"Critical Alert","Normal","-27.44","Alert"],["BRM","ME-1707-91_V286(BRM)ห้วยราช2","GigabitEthernet0/3/23","SFP-GE-LX80-U",1000,"Critical Alert","Normal","-40.0","Alert"],["CPM","ME-1603-91_V275(CPM)คลองไผ่งาม","GigabitEthernet0/3/22","SFP-GE-70D",1000,"Critical Alert","Normal","-40.0","Alert"],["RET","ME-2803-31_V375(RET)จตุรพักตรพิมาน","25GE0/2/9","RTXM191-502",1000,"Critical Alert","Normal","-30.93","Alert"],["KKN","ME-2507-33_V357(KKN3)ภูเวียงบ้านดินดำ","GigabitEthernet0/3/23","SFP-BX-D",1000,"Critical Alert","Normal","-33.97","Alert"],["RET","ME-2817-32_V376(RET)จังหารบ้านอนามัย","GigabitEthernet0/3/23","SFP-GE-LX80-D",1000,"Critical Alert","Normal","-36.97","Alert"],["MDH","ME-3702-32_V389(MDH)โพธิ์ไทร","GigabitEthernet0/3/18","RTXM191-502",1000,"Normal","--","-21.54","Unknown"],["CPM","ME-1602-91_V272(CPM)ภูเขียว","25GE0/2/22","TSBLXG80D-54",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["UBN","ME-1808-71_V1551(UBN2)แยกบ้านดวน","GigabitEthernet0/3/0","SFP+10G-BXD-80",10000,"Critical Alert","Normal","-23.37","Alert"],["NMA","ME-1405-95_V1501(NMA3)ปอแดงปีกธงชัย","GigabitEthernet0/1/0","SFP+10G-BXU-80",10000,"Critical Alert","Normal","-23.76","Alert"],["UDN","ME-3005-66_V515(UDN)ดอนเดื่อ","GigabitEthernet0/3/0","SFP+ Transceiver",10000,"Critical Alert","Normal","-24.08","Alert"],["NMA","ME-1427-92_V1507(NMA3)เมืองยาง","GigabitEthernet0/3/0","57ME111BB",10000,"Critical Alert","Normal","-23.76","Alert"],["BKN","MME-3801-32(BKN)บึงกาฬ","GigabitEthernet0/4/0","57ME111BB",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["SRN","ME-2104-93_V296(SRN)บ้านไทร","GigabitEthernet0/2/1","SFP+-ZR",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["BRM","ME-1741-94_V284(BRM)คูเมือง","GigabitEthernet0/3/6","SFP-10G-BX55-80",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["KKN","MME-2501-33(KKN)เจริญทาวเวอร์","GigabitEthernet0/3/4","SFP-10G-BX55-80",10000,"Critical Alert","Normal","-23.37","Alert"],["CPM","ME-1604-94_V271(CPM)ส้มป่อยหนองบัวบาย","GigabitEthernet0/3/1","57ME110BB",10000,"Critical Alert","Normal","-23.46","Alert"],["SRN","ME-2116-91_V293(SRN)ศรีณรงค์","25GE0/2/21","SFP+10G-BXU-80",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["RET","ME-2807-31_V375(RET)สุวรรณภูมิ","25GE0/2/14","TSBLXG80D-45",10000,"Critical Alert","Normal","-40.0","Alert"],["RET","ME-2807-31_V375(RET)สุวรรณภูมิ","100GE0/2/26","QSFP-100G-ZR4-SO",100000,"Critical Alert","Critical Alert","--","Alert"],["NKI","MME-3201-38(NKI)หนองสองห้อง","GigabitEthernet0/3/2","SFP+-ZR",10000,"Critical Alert","Critical Alert","-40.0","Alert"],["NKI","ME-3231-31_V521(NKI)สวท.หนองคาย","GigabitEthernet0/6/5","SFP-BX-U",1000,"Critical Alert","Normal","-40.0","Alert"],["BKN","ME-3801-31_V529(BKN)บึงกาฬ","GigabitEthernet0/2/1","SFP+10G-BXD-80",10000,"Critical Alert","Normal","-23.18","Alert"],["ACR","ME-2209-31_V332(ACR)ไทยเจริญ","25GE0/2/23","SFP+10G-BXD-80",10000,"Critical Alert","Normal","-23.27","Alert"],["UDN","ME-3031-33_V501(UDN)บ้านจั่น","GigabitEthernet0/3/21","SFP-GE-70D",1000,"Critical Alert","Normal","-40.0","Alert"]],
+"speed":[["10G (SFP+)",829,26,86],["1G (ESFP/SFP)",27,18,30],["100G (QSFP28)",14,1,5]],
+"dq":[["Reconciliation Raw vs Clean (80 km)","870 = 870","ok","แก้สูตรนับซ้ำแล้ว"],["แถวไม่มีค่า Distance ('--')","777","warn","ตรวจใน NMS ว่ามีรุ่น 80 km ปะปนหรือไม่"],["Serial No. ซ้ำ (OEM Cloned EEPROM)","124","warn","ใช้ NE+Port เป็นคีย์หลัก"],["NE ไม่มีรหัส Zone (MP-UBN-NE)","23","warn","ควรอัปเดตมาตรฐานชื่อ NE"],["MultiMode ที่ระยะ 80 km","1","warn","ME-1822-01_V303(UBN)แมคโคร"],["Transmit Status = '--' (Unknown)","1","warn","ME-3702-32_V389(MDH)โพธิ์ไทร"],["Manufacturer สะกดไม่สม่ำเสมอ","15","fixed","ปรับใน Manufacturer (Std) แล้ว"],["ไม่มีรหัส BOM","137","warn","ใช้ Vendor PN เปิด PR"]],
+"core":{"NMA":"RC2","UBN":"RC2","KKN":"RC3","SNK":"RC3","UDN":"RC3"}};
+const C={osp:'#0F5C55',ospL:'#5FD3C4',sun:'#FFC20E',red:'#E04848'};
+const $=s=>document.querySelector(s),fmt=n=>n.toLocaleString('th-TH'),pct=x=>(x*100).toFixed(1)+'%';
+function showErr(m){const e=$('#err');e.style.display='block';e.innerHTML+='⚠️ '+m+'<br>';}
+try{if(!D||!Array.isArray(D.zones)||!D.zones.length)throw 'ไม่พบข้อมูล Zone';
+ D.zones.forEach(z=>{if(z.length!==7||z.slice(1).some(v=>typeof v!=='number'||v<0))throw 'รูปแบบข้อมูล Zone ไม่ถูกต้อง: '+z[0];if(z[3]+z[4]+z[5]!==z[2])showErr('Zone '+z[0]+': ผลรวม 1G+10G+100G ไม่เท่ากับจำนวน Module');});
+}catch(e){showErr(e);}
+const TOT={ne:0,m:0,al:0};
+const Z=D.zones.map(z=>{const o={z:z[0],ne:z[1],m:z[2],g1:z[3],g10:z[4],g100:z[5],al:z[6]};TOT.ne+=o.ne;TOT.m+=o.m;TOT.al+=o.al;return o;});
+Z.forEach(o=>{o.sh=o.m/TOT.m;o.ar=o.m?o.al/o.m:0;o.pn=(D.top[o.z]||['-',0]);o.rc=D.core[o.z]||'';});
+const st=a=>a>=5?['🔴 สูง','p-r']:a>0?['🟠 เฝ้าระวัง','p-a']:['🟢 ปกติ','p-g'];
+const unk=D.alerts.filter(a=>a[8]!=='Alert').length,neAl=new Set(D.alerts.filter(a=>a[8]==='Alert').map(a=>a[1])).size;
+const spare=D.speed.reduce((s,x)=>s+x[3],0),zAl=Z.filter(z=>z.al>0).length;
+const K=[['🖥️ จำนวน NE ที่ใช้ 80 km',TOT.ne,'พบ Alert '+neAl+' NE',''],['🔌 จำนวน Module 80 km',TOT.m,'10G '+pct(D.speed[0][1]/TOT.m)+' ของทั้งหมด',''],['🗺️ พื้นที่ (Zone)',Z.length,(Z.length-1)+' Zone + 1 ไม่ระบุ Zone',''],['🚨 Module Alert',TOT.al,'อัตรา '+pct(TOT.al/TOT.m)+' (จาก '+TOT.m+') • Unknown '+unk,'red'],['📍 Zone ที่มี Alert',zAl,'🔴 สูง '+Z.filter(z=>z.al>=5).length+' Zone','sun'],['📦 แนะนำจัดซื้อ Spare',spare,'Buffer '+(spare-TOT.al)+' + Alert '+TOT.al,'sun']];
+$('#kpis').innerHTML=K.map(k=>`<div class="kpi ${k[3]}"><div class="l">${k[0]}</div><div class="v">${fmt(k[1])}</div><div class="s">${k[2]}</div></div>`).join('');
+let view='all',sortK='m',sortD=-1,selZ=null,curA=[];
+function rows(){let r=Z.filter(z=>view==='all'||(view==='core'&&z.rc)||(view==='alert'&&z.al>0));return r.sort((a,b)=>{const x=a[sortK],y=b[sortK];return(typeof x==='string'?x.localeCompare(y):x-y)*sortD;});}
+function renderTable(){const r=rows();
+ $('#tZone tbody').innerHTML=r.map(z=>{const s=st(z.al);return `<tr data-z="${z.z}" class="${z.z===selZ?'sel':''}"><td><b>${z.z}</b>${z.rc?'<span class="rc">'+z.rc+'-'+z.z+'</span>':''}</td><td class="n">${fmt(z.ne)}</td><td class="n"><b>${fmt(z.m)}</b></td><td class="n">${pct(z.sh)}</td><td class="n">${z.g1}</td><td class="n">${z.g10}</td><td class="n">${z.g100}</td><td class="n">${z.al}</td><td class="n">${pct(z.ar)}</td><td>${z.pn[0]} <span class="mut">(${z.pn[1]})</span></td><td><span class="pill ${s[1]}">${s[0]}</span></td></tr>`}).join('');
+ const t=r.reduce((a,z)=>{a.ne+=z.ne;a.m+=z.m;a.g1+=z.g1;a.g10+=z.g10;a.g100+=z.g100;a.al+=z.al;return a},{ne:0,m:0,g1:0,g10:0,g100:0,al:0});
+ $('#tZone tfoot').innerHTML=`<tr><td>รวม (${r.length} Zone)</td><td class="n">${fmt(t.ne)}</td><td class="n">${fmt(t.m)}</td><td class="n">${pct(t.m/TOT.m)}</td><td class="n">${t.g1}</td><td class="n">${t.g10}</td><td class="n">${t.g100}</td><td class="n">${t.al}</td><td class="n">${t.m?pct(t.al/t.m):'-'}</td><td></td><td></td></tr>`;
+ document.querySelectorAll('#tZone tbody tr').forEach(tr=>tr.onclick=()=>pick(tr.dataset.z));}
+document.querySelectorAll('#tZone th').forEach(th=>th.onclick=()=>{const k=th.dataset.k;sortD=(sortK===k)?-sortD:-1;sortK=k;renderTable();});
+function renderDetail(){const q=$('#q').value.trim().toLowerCase(),sp=$('#sp').value;const z=selZ?Z.find(x=>x.z===selZ):null;
+ $('#zTitle').textContent='3) รายละเอียด Zone: '+(z?z.z+(z.rc?' ('+z.rc+'-'+z.z+')':''):'ทุก Zone');
+ const src=z||{ne:TOT.ne,m:TOT.m,al:TOT.al,sh:1,ar:TOT.al/TOT.m};
+ $('#zd').innerHTML=[['จำนวน NE',fmt(src.ne)],['Module 80 km',fmt(src.m)],['สัดส่วนของทั้งหมด',pct(src.sh)],['Module Alert',src.al],['อัตรา Alert',pct(src.ar)]].map(x=>`<div><span class="mut">${x[0]}</span><b>${x[1]}</b></div>`).join('');
+ curA=D.alerts.filter(r=>(!selZ||r[0]===selZ)&&(!sp||String(r[4])===sp)&&(!q||(r[1]+r[2]+r[3]).toLowerCase().includes(q)));
+ $('#tAl tbody').innerHTML=curA.length?curA.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td class="n">${r[4]/1000}G</td><td>${r[5]}</td><td>${r[6]}</td><td class="n">${r[7]}</td><td><span class="pill ${r[8]==='Alert'?'p-r':'p-b'}">${r[8]}</span></td></tr>`).join(''):'<tr><td colspan="9" class="mut" style="text-align:center">✅ ไม่พบ Module Alert ตามเงื่อนไขที่เลือก</td></tr>';}
+function pick(z){selZ=(selZ===z)?null:z;renderTable();renderDetail();}
+$('#q').oninput=renderDetail;$('#sp').onchange=renderDetail;$('#rst').onclick=()=>{selZ=null;renderTable();renderDetail();};
+$('#csv').onclick=()=>{const h=['Zone','NE Name','Port','Vendor PN','Speed(Mbps)','Rx Status','Tx Status','Rx(dBm)','Flag'];
+ const esc=v=>'"'+String(v).replace(/"/g,'""')+'"';const csv='﻿'+[h,...curA].map(r=>r.map(esc).join(',')).join('\r\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='OSP_80km_Alert_'+(selZ||'All')+'.csv';a.click();URL.revokeObjectURL(a.href);};
+let cz;
+function renderChart(){if(typeof Chart==='undefined')return;const r=rows().slice().sort((a,b)=>b.m-a.m);
+ const data={labels:r.map(z=>z.z),datasets:[{label:'10G',data:r.map(z=>z.g10),backgroundColor:C.osp,stack:'s',borderRadius:3},{label:'1G',data:r.map(z=>z.g1),backgroundColor:C.ospL,stack:'s'},{label:'100G',data:r.map(z=>z.g100),backgroundColor:C.sun,stack:'s'},{label:'Alert (ตัว)',type:'line',data:r.map(z=>z.al),borderColor:C.red,backgroundColor:C.red,yAxisID:'y2',tension:.3,pointRadius:4}]};
+ if(cz){cz.data=data;cz.update();return;}
+ cz=new Chart($('#cZone'),{type:'bar',data,options:{responsive:true,interaction:{mode:'index',intersect:false},plugins:{title:{display:true,text:'จำนวน Module 80 km แยก Zone และความเร็ว (แกนขวา = Alert)',color:'#0B2E2B'}},scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,title:{display:true,text:'Module (ตัว)'}},y2:{position:'right',grid:{drawOnChartArea:false},title:{display:true,text:'Alert (ตัว)'},beginAtZero:true}},onClick:(e,el)=>{if(el.length)pick(cz.data.labels[el[0].index]);}}});}
+document.querySelectorAll('.bar button[data-f]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.bar button[data-f]').forEach(x=>x.classList.remove('on'));b.classList.add('on');view=b.dataset.f;renderTable();renderChart();});
+if(typeof Chart==='undefined'){showErr('ไม่สามารถโหลด Chart.js (ต้องเชื่อมต่ออินเทอร์เน็ต) — ตารางและตัวกรองยังใช้งานได้ปกติ');}
+else{Chart.defaults.font.family='Prompt, Segoe UI, sans-serif';Chart.defaults.color='#5F7A76';
+ new Chart($('#cSpeed'),{type:'doughnut',data:{labels:D.speed.map(s=>s[0]),datasets:[{data:D.speed.map(s=>s[1]),backgroundColor:[C.osp,C.ospL,C.sun],borderWidth:2,borderColor:'#fff'}]},options:{cutout:'62%',plugins:{title:{display:true,text:'สัดส่วน Module แยกความเร็ว',color:'#0B2E2B'},legend:{position:'bottom'}}}});}
+$('#tSp').innerHTML=D.speed.map(s=>`<tr><td>${s[0]}</td><td class="n">${fmt(s[1])}</td><td class="n">${s[2]}</td><td class="n"><b>${s[3]}</b></td></tr>`).join('')+`<tr><td><b>รวม</b></td><td class="n"><b>${fmt(D.speed.reduce((a,s)=>a+s[1],0))}</b></td><td class="n"><b>${D.speed.reduce((a,s)=>a+s[2],0)}</b></td><td class="n" style="background:#FFF6D6"><b>${spare}</b></td></tr>`;
+$('#tDq').innerHTML=D.dq.map(d=>`<tr><td>${d[0]}</td><td class="n">${d[1]}</td><td class="${d[2]}">${d[2]==='ok'?'✅ ผ่าน':d[2]==='fixed'?'🔧 แก้ไขแล้ว':'⚠️ เตือน'}</td><td class="mut">${d[3]}</td></tr>`).join('');
+renderTable();renderDetail();renderChart();
+</script></body></html>
